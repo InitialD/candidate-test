@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require('jsonwebtoken');
-
+const config = require("../data/database");
 const User = require("../models/user");
 
 //Register
@@ -41,16 +41,17 @@ router.post("/authenticate", function(req, res, next){
       if(err) throw err;
       if(isMatch){
         //create token
-        const token = gwt.sign(user, config.secret, {
+        const token = jwt.sign({data: user}, config.secret, {
           expiresIn: 600 //ten minutes
         });
 
         res.json({
           success: true,
-          token: 'JWT '+token,
+          token: `Bearer ${token}`,
           user: {
-            id: user._id
-            name: user.username,
+            id: user._id,
+            name: user.name,
+            username: user.username,
             email: user.email
           }
         });
@@ -63,8 +64,8 @@ router.post("/authenticate", function(req, res, next){
 });
 
 //profile (protected)
-router.get("/profile", function(req, res, next){
-  res.send("profile");
+router.get("/profile", passport.authenticate('jwt', {session:false}), function(req, res, next){
+   res.json({user: req.user});
 });
 
 module.exports = router;
