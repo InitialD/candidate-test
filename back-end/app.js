@@ -30,9 +30,17 @@ app.use(cors());
 //set static folders
 app.use(express.static( path.join( path.resolve("."), "front-end")));
 
-//Body Parser middleware
+//BodyParser middleware
 app.use(bodyParser.json());
 
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//pass in the passport
+require('../data/passport')(passport);
+
+//Routes
 app.use("/users", users);
 
 //Index Route
