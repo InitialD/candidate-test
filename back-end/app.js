@@ -27,8 +27,8 @@ const port = 3000;
 
 app.use(cors());
 
-//set static folders
-app.use(express.static( path.join( path.resolve("."), "front-end")));
+//set static folders, had double front-end folder when built, moved up one
+app.use(express.static( path.join( path.resolve("."), "front-end/dist")));
 
 //BodyParser middleware
 app.use(bodyParser.json());
@@ -44,8 +44,13 @@ require('../data/passport')(passport);
 app.use("/users", users);
 
 //Index Route
-app.get('/', function(req, res){
+app.get('/dist', function(req, res){
   res.send("Invalid");
+});
+
+ //redirect every other route
+app.get('*', function(req,res){
+  res.sendFile(path.join( path.resolve("."), "front-end/dist/index.html"))
 });
 
 //Start Server
