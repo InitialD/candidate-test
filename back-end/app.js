@@ -23,11 +23,12 @@ const app = express();
 
 const users = require("../routes/users");
 
-const port = 3000;
+//launch on the cloud
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 
-//set static folders, had double front-end folder when built, moved up one
+//set static folders, "front-end/dist"
 app.use(express.static( path.join( path.resolve("."), "front-end/dist")));
 
 //BodyParser middleware
@@ -48,7 +49,7 @@ app.get('/dist', function(req, res){
   res.send("Invalid");
 });
 
- //redirect every other route
+//redirect every other route
 app.get('*', function(req,res){
   res.sendFile(path.join( path.resolve("."), "front-end/dist/index.html"))
 });
