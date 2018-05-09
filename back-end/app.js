@@ -22,9 +22,10 @@ mongoose.connection.on("error", function(err){
 const app = express();
 
 const users = require("../routes/users");
+const companies = require("../routes/companies");
 
-//launch on the cloud
-const port = process.env.PORT || 8080;
+//launch on the cloud process.env.PORT || 8080
+const port = 3000;
 
 app.use(cors());
 
@@ -43,6 +44,7 @@ require('../data/passport')(passport);
 
 //Routes
 app.use("/users", users);
+app.use("/companies", companies);
 
 //Index Route
 app.get('/dist', function(req, res){
