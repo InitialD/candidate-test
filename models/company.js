@@ -3,6 +3,7 @@ const config = require("../data/database");
 
 //company schema
 const CompanySchema = mongoose.Schema({
+  _id:String,
   name:String,
   employee:String
 });

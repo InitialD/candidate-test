@@ -18,12 +18,14 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { map } from 'rxjs/operators';
 import { AuthGuard } from "./guard/auth.guard";
 import { CompanyService } from "./services/company.service";
+import { EmployeeComponent } from './components/employee/employee.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+  {path:'dashboard/companies/:id', component: EmployeeComponent},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ];
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot()
   ],
+  exports: [RouterModule],
   providers: [ValidateService, AuthService, AuthGuard, CompanyService],
   bootstrap: [AppComponent]
 })

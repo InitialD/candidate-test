@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     private router:Router
   ) { }
   company: any;
+  companies: any;
   ngOnInit() {
     this.companyService.getCompanies().subscribe(res => this.companies = res);
   }

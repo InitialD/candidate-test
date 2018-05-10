@@ -1,4 +1,13 @@
 
 <div *ngFor="let company of companies">
-  {{ company.name }} , {{ company.employee}}
+  <div class="company-container">
+    <div class="row expanded">
+      <div class="small-12 medium-5 medium-offset-1 columns">
+        <a routerLink="companies/{{ company._id }}">{{ company.name}}</a>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <p>{{ company.employee | slice: 0:50 }}</p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -9,6 +9,8 @@ const config = require("../data/database.js");
 //connect to db
 mongoose.connect(config.database);
 
+mongoose.Promise = global.Promise;
+
 //on connection
 mongoose.connection.on("connected", function(){
   console.log("connected to db " +config.database);
@@ -45,6 +47,7 @@ require('../data/passport')(passport);
 //Routes
 app.use("/users", users);
 app.use("/companies", companies);
+app.use("/companies/:id", companies);
 
 //Index Route
 app.get('/dist', function(req, res){

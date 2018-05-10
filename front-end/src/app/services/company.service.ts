@@ -7,18 +7,22 @@ import 'rxjs/add/operator/map';
 export class CompanyService {
 
   result:any;
+  id:any;
 
   constructor(private http: Http) { }
 
   getCompanies() {
-
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    /*return this.http.get('http://localhost:3000/users/profile', {headers: headers})
-      .map(res => res.json());*/
-
     return this.http.get('http://localhost:3000/companies/dashboard')
       .map(result => this.result = result.json());
   }
 
+  getEmployee(id) {
+    console.log('Three '+id);
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:3000/companies/dashboard/companies/'+id)
+      .map(result => this.result = result.json());
+  }
 }
