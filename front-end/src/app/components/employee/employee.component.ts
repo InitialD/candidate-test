@@ -15,8 +15,10 @@ export class EmployeeComponent implements OnInit {
     private router:Router,
     private aR:ActivatedRoute
   ) { }
+
   company: any;
   emp: any;
+
   ngOnInit() {
 
     this.aR.params.subscribe((params) => {
@@ -26,5 +28,12 @@ export class EmployeeComponent implements OnInit {
       console.log('Employee '+ this.emp);
     });
   }
+
+  deleteEmployee(empId) {
+     this.companyService.deleteEmployee(empId)
+       .subscribe(res => {
+         this.router.navigateByUrl('/dashboard');
+       })
+   }
 
 }

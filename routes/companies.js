@@ -51,4 +51,36 @@ router.post('/dashboard/create', function(req, res) {
     });
 });
 
+//update an employee TODOODODODO
+router.post('/dashboard/update/:id', function(req, res) {
+    console.log('Updating an employee');
+
+    company.findById(req.params.id)
+        .exec(function(err, emp) {
+            if (err) {
+                console.log('Could not find the employee');
+            } else {
+                console.log('sending update');
+                emp.name = req.body.name;
+                emp.employee = req.body.employee;
+                article.save();
+                res.json(emp);
+            }
+        });
+});
+
+//delete a specific one //try /delete/:id
+router.get('/dashboard/delete/:id', (req, res) => {
+    console.log('Deleting Employee');
+    company.findByIdAndRemove(req.params.id)
+          .exec(function(err, emp) {
+              if (err) {
+                  console.log('cannot delete ' + req.params.id);
+                  next(err);
+              } else {
+                  res.json(emp);
+              }
+          });
+});
+
 module.exports = router;

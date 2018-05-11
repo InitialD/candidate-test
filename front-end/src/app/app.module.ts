@@ -29,6 +29,7 @@ const appRoutes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'dashboard/create', component: CreateComponent},
+  {path:'dashboard/companies/:id/edit', component: CreateComponent}, //'dashboard/companies/5af331ca734d1d64dbec1cdd/edit'
   {path:'dashboard/companies/:id', component: EmployeeComponent},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ];

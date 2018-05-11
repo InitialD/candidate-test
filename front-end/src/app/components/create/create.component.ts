@@ -22,30 +22,30 @@ export class CreateComponent implements OnInit {
     name: String;
     employee: String;
 
-  ngOnInit() {
-    /*this.companyService.getCompanies()
-      .subscribe(res=> this.emps = res);
+    emp: Array<Company>;
 
+  ngOnInit() {
+    /*if it exists TODOODODODO
     this.aR.params.subscribe((params) => {
       if (params['id']) {
-        this.companyService.getEmployee(params['id'])
+        this._articleService.getArticle(params['id'])
           .subscribe(res => {
 
-            this.company = res;
+            this.article = res;
 
-            this.empFrm = this.fb.group({
-              'name' : [this.company['name']],
-              'employee' : [this.company['employee']],
+            this.articleFrm = this.fb.group({
+              'title' : [this.article['title'], Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(45)])],
+              'content' : [this.article['content'], Validators.compose([Validators.required, Validators.minLength(10)])],
             });
           });
       } else {
-        this.empFrm = this.fb.group({
-          'name' : [null],
-          'employee' : [null],
+        this.articleFrm = this.fb.group({
+          'title' : [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(45)])],
+          'content' : [null, Validators.compose([Validators.required, Validators.minLength(10)])],
         });
       }
-    });*/
-  }
+    })*/
+  } //end of ngOnInit
 
   validateSubmission(info){
     if(info.name == undefined || info.employee == undefined){
@@ -55,7 +55,7 @@ export class CreateComponent implements OnInit {
       }
   }
 
-  addEmployee() {
+  addEmployee(currEmp) {
     const emp = {
       name: this.name,
       employee: this.employee
@@ -66,7 +66,23 @@ export class CreateComponent implements OnInit {
         {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-
+    console.log("found and updating in creat.comp "+currEmp);
+        //if employee exists
+        if(currEmp !== undefined){
+          console.log("found and updating in creat.comp "+emp);
+          this.companyService.updateEmployee(emp, currEmp).subscribe(data => {
+            if(data.success){
+              this.flashMessage.show('Update Successful',
+                {cssClass: 'alert-success', timeout: 3000});
+              this.router.navigate(['/dashboard']);
+            }else{
+              this.flashMessage.show('Error Updating',
+                {cssClass: 'alert-danger', timeout: 3000});
+              this.router.navigate(['/dashboard/create']);
+            }
+          });
+        }
+        else{
         //Add Employee (observable)
         this.companyService.insertEmployee(emp).subscribe(data => {
           if(data.success){
@@ -79,7 +95,7 @@ export class CreateComponent implements OnInit {
             this.router.navigate(['/dashboard/create']);
           }
         });
-    //}
+    }
   }
 
 }
