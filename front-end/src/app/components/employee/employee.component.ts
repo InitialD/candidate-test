@@ -16,12 +16,14 @@ export class EmployeeComponent implements OnInit {
     private aR:ActivatedRoute
   ) { }
   company: any;
+  emp: any;
   ngOnInit() {
 
     this.aR.params.subscribe((params) => {
       let id = params["id"];
-      console.log('Two '+id);
-      this.companyService.getEmployee(id).subscribe(res => this.company = res);
+      this.companyService.getEmployee(id).subscribe(res => this.emp = res);
+
+      console.log('Employee '+ this.emp);
     });
   }
 

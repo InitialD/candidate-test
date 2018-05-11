@@ -19,10 +19,9 @@ export class CompanyService {
   }
 
   getEmployee(id) {
-    console.log('Three '+id);
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/companies/dashboard/companies/'+id)
+    return this.http.get('http://localhost:3000/companies/dashboard/'+id)
       .map(result => this.result = result.json());
   }
 }
