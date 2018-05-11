@@ -13,3 +13,7 @@ const Company = module.exports = mongoose.model("Company", CompanySchema);
 module.exports.getCompany = function(callback){
   User.find({}, callback);
 }
+
+module.exports.addEmp = function(newEmp, callback){
+      newEmp.save(callback);
+}

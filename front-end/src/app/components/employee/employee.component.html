@@ -1,7 +1,14 @@
-<p>
-  Hey I work
-</p>
-
 <div *ngIf="emp">
-  <div>please1 {{ emp.name }}</div>
+  <div class="company-container">
+    <div class="row expanded">
+      <div class="small-12 medium-9 columns">
+        <a [routerLink]="['/dashboard']" class="btns">{{ emp.name }}</a>
+        <p>{{ emp.employee }}</p>
+      </div>
+      <div class="small-12 medium-3 columns">
+        <a routerLink="/edit/{{ emp._id }}" class="btns">Edit Employee</a>
+        <a (click)="deleteEmployee(emp._id)" class="btns">Delete Employee</a>
+      </div>
+    </div>
+  </div>
 </div>

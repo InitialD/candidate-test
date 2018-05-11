@@ -3,6 +3,7 @@ const router = express.Router();
 const config = require("../data/database");
 const company = require("../models/company");
 const ObjectId = require('mongoose').ObjectId;
+const mongoose = require('mongoose');
 const OId = require('mongodb').ObjectID;
 
 //get all from database
@@ -13,8 +14,6 @@ router.get('/dashboard', function(req, res, next) {
             if (err) {
                 console.log('Error retrieving data');
             } else {
-                console.log('Getting All');
-                console.log(typeof companies);
                 res.json(companies);
             }
         });
@@ -22,7 +21,6 @@ router.get('/dashboard', function(req, res, next) {
 
 //get a specific one
 router.get('/dashboard/:id', (req, res) => {
-    console.log('Requesting a specific employee' + req.params.id);
     //'_id': req.params.id}
     company.findById(req.params.id)
           .exec(function(err, emp) {
@@ -30,10 +28,27 @@ router.get('/dashboard/:id', (req, res) => {
                   console.log('cannot find ' + req.params.id);
                   next(err);
               } else {
-                  console.log('emplo ' + typeof emp);
                   res.json(emp);
               }
           });
+});
+
+//add an employee
+router.post('/dashboard/create', function(req, res) {
+    let newEmp = new company({
+      _id: new mongoose.mongo.ObjectId(),
+      name: req.body.name,
+      employee: req.body.employee
+    });
+
+    company.addEmp(newEmp, function(err, newEmp) {
+        if(err) {
+            console.log('Error inserting the employee ' + err);
+            res.json({success: false, msg: "fail to add employee"});
+        } else {
+            res.json({success: true, msg: "added employee"});
+        }
+    });
 });
 
 module.exports = router;
