@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { CreateComponent } from './components/create/create.component';
+import { UpdateComponent } from './components/update/update.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'dashboard/create', component: CreateComponent},
-  {path:'dashboard/companies/:id/edit', component: CreateComponent}, //'dashboard/companies/5af331ca734d1d64dbec1cdd/edit'
+  {path:'dashboard/update/:id', component: UpdateComponent},
   {path:'dashboard/companies/:id', component: EmployeeComponent},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ];
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     EmployeeComponent,
-    CreateComponent
+    CreateComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

@@ -43,7 +43,6 @@ router.post('/dashboard/create', function(req, res) {
 
     company.addEmp(newEmp, function(err, newEmp) {
         if(err) {
-            console.log('Error inserting the employee ' + err);
             res.json({success: false, msg: "fail to add employee"});
         } else {
             res.json({success: true, msg: "added employee"});
@@ -53,18 +52,15 @@ router.post('/dashboard/create', function(req, res) {
 
 //update an employee TODOODODODO
 router.post('/dashboard/update/:id', function(req, res) {
-    console.log('Updating an employee');
-
     company.findById(req.params.id)
         .exec(function(err, emp) {
             if (err) {
-                console.log('Could not find the employee');
+                res.json({success: false, msg: "fail to find employee"});
             } else {
-                console.log('sending update');
                 emp.name = req.body.name;
                 emp.employee = req.body.employee;
-                article.save();
-                res.json(emp);
+                emp.save();
+                res.json({success: true, msg: "updated"});
             }
         });
 });

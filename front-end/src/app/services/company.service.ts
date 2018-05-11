@@ -53,4 +53,12 @@ export class CompanyService {
       .map(result => this.result = result.json());
   }
 
+  validateSubmission(info){
+    if(info.name == undefined || info.employee == undefined){
+        return false;
+      } else{
+        return true;
+      }
+    }
+
 }

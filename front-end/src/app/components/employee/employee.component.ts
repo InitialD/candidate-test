@@ -25,7 +25,6 @@ export class EmployeeComponent implements OnInit {
       let id = params["id"];
       this.companyService.getEmployee(id).subscribe(res => this.emp = res);
 
-      console.log('Employee '+ this.emp);
     });
   }
 

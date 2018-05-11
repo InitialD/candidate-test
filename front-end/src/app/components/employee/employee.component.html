@@ -6,7 +6,7 @@
         <p>{{ emp.employee }}</p>
       </div>
       <div class="small-12 medium-3 columns">
-        <a routerLink="edit" class="btns">Edit Employee</a>
+        <a routerLink="/dashboard/update/{{ emp._id }}" class="btns">Edit Employee</a>
         <a (click)="deleteEmployee(emp._id)" class="btns">Delete Employee</a>
       </div>
     </div>

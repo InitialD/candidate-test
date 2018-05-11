@@ -7,11 +7,11 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class CreateComponent implements OnInit {
+export class UpdateComponent implements OnInit {
 
   constructor(
     private flashMessage:FlashMessagesService,
@@ -21,13 +21,20 @@ export class CreateComponent implements OnInit {
 
     name: String;
     employee: String;
+
     emp: Array<Company>;
-    currEmp: Company;
+    currEmp: any;
 
   ngOnInit() {
-  } //end of ngOnInit
+    //get the id from the Url
+    this.aR.params.subscribe((params) => {
+      let id = params["id"];
+      this.companyService.getEmployee(id).subscribe(res => this.currEmp = res);
 
-  addEmployee() {
+    });
+  }
+
+  upEmployee(currEmp) {
     const emp = {
       name: this.name,
       employee: this.employee
@@ -38,20 +45,17 @@ export class CreateComponent implements OnInit {
         {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    console.log("found emp ");
-        //Add Employee (observable)
-        this.companyService.insertEmployee(emp).subscribe(data => {
-          if(data.success){
-            this.flashMessage.show('Add Successful',
-              {cssClass: 'alert-success', timeout: 3000});
-            this.router.navigate(['/dashboard']);
-          }else{
-            this.flashMessage.show('Error Creating',
-              {cssClass: 'alert-danger', timeout: 3000});
-            this.router.navigate(['/dashboard/create']);
-          }
-        });
-
+    this.companyService.updateEmployee(emp, currEmp).subscribe(data => {
+      if(data.success){
+        this.flashMessage.show('Update Successful',
+          {cssClass: 'alert-success', timeout: 3000});
+        this.router.navigate(['/dashboard']);
+      }else{
+        this.flashMessage.show('Error Updating',
+          {cssClass: 'alert-danger', timeout: 3000});
+        this.router.navigate(['/dashboard/create']);
+      }
+    });
   }
 
 }
