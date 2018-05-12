@@ -5,8 +5,14 @@
       <div class="small-12 medium-3 columns">
         <a [routerLink]="['/dashboard/create']" class="btns">Add Employee</a>
       </div>
+      <form (submit)="searchEmployee()"class="form-inline my-2 my-lg-0">
+        <input [(ngModel)]="name" name="name" class="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   </div>
+
+
 
 <div *ngFor="let company of companies">
   <div class="company-container">

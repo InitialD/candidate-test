@@ -6,9 +6,24 @@
         <p>{{ emp.employee }}</p>
       </div>
       <div class="small-12 medium-3 columns">
+        <a routerLink="/dashboard/addtest/{{ emp._id }}" class="btns">Add Test</a>
         <a routerLink="/dashboard/update/{{ emp._id }}" class="btns">Edit Employee</a>
         <a (click)="deleteEmployee(emp._id)" class="btns">Delete Employee</a>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="emptest">
+  <div *ngFor ="let test of emptest.tests">
+    <div class="company-container">
+      <div class="row expanded">
+        <div >
+          <a routerLink="companies/">{{ test.testname}}</a>
+        </div>
+        <div>
+          <p>{{ test.result}}</p>
+        </div>
+      </div>
+    </div>
+  </div>

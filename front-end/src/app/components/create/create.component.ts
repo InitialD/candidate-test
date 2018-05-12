@@ -38,7 +38,6 @@ export class CreateComponent implements OnInit {
         {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    console.log("found emp ");
         //Add Employee (observable)
         this.companyService.insertEmployee(emp).subscribe(data => {
           if(data.success){

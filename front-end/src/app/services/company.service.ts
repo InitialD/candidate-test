@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import { Company } from "../company";
+import { Test } from "../test";
 
 @Injectable({providedIn: 'root'})
 export class CompanyService {
@@ -25,6 +26,22 @@ export class CompanyService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:3000/companies/dashboard/'+id)
+      .map(result => this.result = result.json());
+  }
+
+  //really needed?
+  getTests(id) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:3000/companies/dashboard/'+id)
+      .map(result => this.result = result.json());
+  }
+
+  //To-Do implement in front end
+  findEmployee(name) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:3000/companies/dashboard/')
       .map(result => this.result = result.json());
   }
 
@@ -53,6 +70,14 @@ export class CompanyService {
       .map(result => this.result = result.json());
   }
 
+  /*insertTest(test, id) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    //'dashboard/create'
+    return this.http.post('http://localhost:3000/companies/dashboard/'+id+'/addtest', test, {headers: headers})
+      .map(result => this.result = result.json());
+  }*/
+
   validateSubmission(info){
     if(info.name == undefined || info.employee == undefined){
         return false;
@@ -60,5 +85,14 @@ export class CompanyService {
         return true;
       }
     }
+
+    validateTest(test){
+      if(test.testname == undefined ||
+        ((test.result != "Pass") && (test.result != "Fail"))){
+          return false;
+        } else{
+          return true;
+        }
+      }
 
 }

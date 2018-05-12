@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const config = require("../data/database");
 const company = require("../models/company");
+const test = require("../models/test");
 const ObjectId = require('mongoose').ObjectId;
 const mongoose = require('mongoose');
 const OId = require('mongodb').ObjectID;
@@ -19,9 +20,8 @@ router.get('/dashboard', function(req, res, next) {
         });
 });
 
-//get a specific one
+//get a specific employee by id
 router.get('/dashboard/:id', (req, res) => {
-    //'_id': req.params.id}
     company.findById(req.params.id)
           .exec(function(err, emp) {
               if (err) {
@@ -32,6 +32,33 @@ router.get('/dashboard/:id', (req, res) => {
               }
           });
 });
+
+//get a specific employee by id with tests? does this work?
+router.get('/dashboard/:id', (req, res) => {
+    console.log('In tests' + req.params.id);
+    test.findById(req.params.id)
+          .exec(function(err, emptest) {
+              if (err) {
+                  console.log('cannot find tests' + req.params.id);
+                  next(err);
+              } else {
+                  res.json(emptest);
+              }
+          });
+});
+
+/*get a specific employee by name
+router.get('/dashboard/:id', (req, res) => {
+    company.findById(req.params.id)
+          .exec(function(err, emp) {
+              if (err) {
+                  console.log('cannot find ' + req.params.id);
+                  next(err);
+              } else {
+                  res.json(emp);
+              }
+          });
+});*/
 
 //add an employee
 router.post('/dashboard/create', function(req, res) {
@@ -50,7 +77,7 @@ router.post('/dashboard/create', function(req, res) {
     });
 });
 
-//update an employee TODOODODODO
+//update an employee
 router.post('/dashboard/update/:id', function(req, res) {
     company.findById(req.params.id)
         .exec(function(err, emp) {
@@ -77,6 +104,23 @@ router.get('/dashboard/delete/:id', (req, res) => {
                   res.json(emp);
               }
           });
+});
+
+//add a test to an employee
+router.post('/dashboard/:id/addtest', function(req, res) {
+    let newTest = new test({
+      _id: new mongoose.mongo.ObjectId(),
+      testname: req.body.testname,
+      result: req.body.result
+    });
+
+    test.addNewTest(newTest, function(err, newTest) {
+        if(err) {
+            res.json({success: false, msg: "fail to add test"});
+        } else {
+            res.json({success: true, msg: "added test"});
+        }
+    });
 });
 
 module.exports = router;

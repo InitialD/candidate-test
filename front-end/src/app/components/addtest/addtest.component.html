@@ -1,0 +1,14 @@
+<div *ngIf="currEmp">
+  <h2 class="page-header">Add Test to {{ currEmp.name }}</h2>
+  <form (submit)="addTest(currEmp._id)"> <!-- add an id to see if it exists-->
+    <div class="form-group">
+      <label>Test Name</label>
+      <input type="text" [(ngModel)]="testname" name="testname" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Result (Must be Pass or Fail)</label>
+      <input type="text" [(ngModel)]="result" name="result" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+</div>

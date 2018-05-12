@@ -25,6 +25,7 @@ const app = express();
 
 const users = require("../routes/users");
 const companies = require("../routes/companies");
+const tests = require("../routes/tests");
 
 //launch on the cloud process.env.PORT || 8080
 const port = 3000;
@@ -47,6 +48,7 @@ require('../data/passport')(passport);
 //Routes
 app.use("/users", users);
 app.use("/companies", companies);
+app.use("/tests", tests);
 app.use("/companies/:id", companies);
 
 //Index Route
