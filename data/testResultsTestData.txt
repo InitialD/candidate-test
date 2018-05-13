@@ -1,27 +1,18 @@
 [{
     "_id": "5af331ca734d1d64dbec1cdd",
 	"tests":[
-		{"testname":"eyes","result":"Pass"},
-		{"testname":"chest","result":"Fail"},
-		{"testname":"blood","result":"Fail"},
-		{"testname":"hiv","result":"Pass"}
+		{"_id": ObjectId("5af331ca734d1d64dbec1cde"),"testname":"blood","result":"Fail"}
 		]
 },
 {
     "_id":"5af3526e734d1d64dbec3b6c",
 	"tests":[
-		{"testname":"eyes","result":"Pass"},
-		{"testname":"chest","result":"Fail"},
-		{"testname":"blood","result":"Fail"},
-		{"testname":"hiv","result":"Pass"}
+		{ "_id":ObjectId("5af3526e734d1d64dbec3b6d"),"testname":"chest","result":"Fail"}
 		]
 },
 {
     "_id": "5af377b4734d1d64dbec5c24",
 	"tests":[
-		{"testname":"eyes","result":"Pass"},
-		{"testname":"chest","result":"Fail"},
-		{"testname":"blood","result":"Fail"},
-		{"testname":"hiv","result":"Pass"}
+		{"_id": ObjectId("5af377b4734d1d64dbec5c25"), "testname":"eyes","result":"Pass"}
 		]
 }]

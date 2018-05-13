@@ -34,10 +34,18 @@ export class EmployeeComponent implements OnInit {
   }
 
   deleteEmployee(empId) {
+    // TODO: when deleting an employee, also delete all the tests associated with it
      this.companyService.deleteEmployee(empId)
        .subscribe(res => {
          this.router.navigateByUrl('/dashboard');
        })
    }
+
+   deleteTest(empId, testId) {
+      this.testService.removeTest(testId)
+        .subscribe(res => {
+          this.router.navigateByUrl('/dashboard/companies/'+empId);
+        })
+    }
 
 }

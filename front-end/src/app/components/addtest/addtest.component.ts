@@ -36,8 +36,8 @@ export class AddtestComponent implements OnInit {
   }
 
   addTest(currEmpId) {
-    console.log("CALLING adding test");
     const newtest = {
+      _id: currEmpId,
       testname: this.testname,
       result: this.result
     }
@@ -47,15 +47,12 @@ export class AddtestComponent implements OnInit {
         {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-
-    //to do fix routes
-    console.log("adding test");
         //Add Test (observable)
         this.testService.insertTest(newtest, currEmpId).subscribe(data => {
           if(data.success){
             this.flashMessage.show('Add Test Successful',
               {cssClass: 'alert-success', timeout: 3000});
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard/companies/'+currEmpId]);
           }else{
             this.flashMessage.show('Error Creating Test',
               {cssClass: 'alert-danger', timeout: 3000});

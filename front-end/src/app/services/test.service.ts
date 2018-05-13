@@ -16,7 +16,6 @@ export class TestService {
     ) { }
 
     getTests(id) {
-      console.log("CALLING gettest");
       let headers = new Headers();
       headers.append('Content-Type','application/json');
       return this.http.get('http://localhost:3000/tests/dashboard/'+id)
@@ -26,8 +25,14 @@ export class TestService {
     insertTest(test, id) {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
-      //'dashboard/create'
-      return this.http.post('http://localhost:3000/companies/dashboard/'+id+'/addtest', test, {headers: headers})
+      return this.http.post('http://localhost:3000/tests/dashboard/'+id+'/addtest', test, {headers: headers})
+        .map(result => this.result = result.json());
+    }
+
+    removeTest(id) {
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      return this.http.get('http://localhost:3000/tests/dashboard/delete/'+id)
         .map(result => this.result = result.json());
     }
 

@@ -33,20 +33,6 @@ router.get('/dashboard/:id', (req, res) => {
           });
 });
 
-//get a specific employee by id with tests? does this work?
-router.get('/dashboard/:id', (req, res) => {
-    console.log('In tests' + req.params.id);
-    test.findById(req.params.id)
-          .exec(function(err, emptest) {
-              if (err) {
-                  console.log('cannot find tests' + req.params.id);
-                  next(err);
-              } else {
-                  res.json(emptest);
-              }
-          });
-});
-
 /*get a specific employee by name
 router.get('/dashboard/:id', (req, res) => {
     company.findById(req.params.id)
@@ -94,7 +80,6 @@ router.post('/dashboard/update/:id', function(req, res) {
 
 //delete a specific one //try /delete/:id
 router.get('/dashboard/delete/:id', (req, res) => {
-    console.log('Deleting Employee');
     company.findByIdAndRemove(req.params.id)
           .exec(function(err, emp) {
               if (err) {

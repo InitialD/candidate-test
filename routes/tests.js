@@ -9,7 +9,6 @@ const OId = require('mongodb').ObjectID;
 
 //get a specific employee by id with tests? does this work?
 router.get('/dashboard/:id', (req, res) => {
-    console.log('In tests finding tests' + req.params.id);
     test.findById(req.params.id)
           .exec(function(err, emptest) {
               if (err) {
@@ -23,13 +22,8 @@ router.get('/dashboard/:id', (req, res) => {
 
 //add a test to an employee
 router.post('/dashboard/:id/addtest', function(req, res) {
-    let newTest = new test({
-      _id: new mongoose.mongo.ObjectId(),
-      testname: req.body.testname,
-      result: req.body.result
-    });
 
-    test.addNewTest(newTest, function(err, newTest) {
+    test.addNewTest(req.body.testname,req.body.result, req.body._id, function(err, newTest) {
         if(err) {
             res.json({success: false, msg: "fail to add test"});
         } else {
