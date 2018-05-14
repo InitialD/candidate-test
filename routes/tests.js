@@ -32,4 +32,15 @@ router.post('/dashboard/:id/addtest', function(req, res) {
     });
 });
 
+//delete a test from an employee
+router.get('/dashboard/delete/:id', (req, res) => {
+    test.removeTest(req.body._id, req.params.id, function(err, newTest) {
+        if(err) {
+            res.json({success: false, msg: "fail to remove test"});
+        } else {
+            res.json({success: true, msg: "removed test"});
+        }
+    });
+});
+
 module.exports = router;

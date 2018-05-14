@@ -29,10 +29,10 @@ export class TestService {
         .map(result => this.result = result.json());
     }
 
-    removeTest(id) {
+    removeTest(empId, currTest) {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this.http.get('http://localhost:3000/tests/dashboard/delete/'+id)
+      return this.http.get('http://localhost:3000/tests/dashboard/delete/'+empId, currTest)
         .map(result => this.result = result.json());
     }
 

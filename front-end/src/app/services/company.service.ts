@@ -29,14 +29,6 @@ export class CompanyService {
       .map(result => this.result = result.json());
   }
 
-  //really needed?
-  getTests(id) {
-    let headers = new Headers();
-    headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/companies/dashboard/'+id)
-      .map(result => this.result = result.json());
-  }
-
   //To-Do implement in front end
   findEmployee(name) {
     let headers = new Headers();
@@ -48,7 +40,6 @@ export class CompanyService {
   insertEmployee(company) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    //'dashboard/create'
     return this.http.post('http://localhost:3000/companies/dashboard/create', company, {headers: headers})
       .map(result => this.result = result.json());
   }
@@ -56,9 +47,6 @@ export class CompanyService {
   updateEmployee(company, id) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    //let options = new RequestOptions({ headers: headers });
-    console.log("updating "+company);
-    //'dashboard/create'
     return this.http.post('http://localhost:3000/companies/dashboard/update/'+id, company, {headers: headers})
       .map(result => this.result = result.json());
   }

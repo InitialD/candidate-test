@@ -1,7 +1,7 @@
 <div *ngIf="currEmp">
-  <h2 class="page-header">Add Test to {{ currEmp.name }}</h2>
+  <h2 class="page-header">Update Test</h2>
   <a routerLink="/dashboard/companies/{{currEmp._id}}" class="btns">Go Back</a>
-  <form (submit)="addTest(currEmp._id)"> <!-- add an id to see if it exists-->
+  <form (submit)="upTest(currEmp._id)"> <!-- add an id to see if it exists-->
     <div class="form-group">
       <label>Test Name</label>
       <input type="text" [(ngModel)]="testname" name="testname" class="form-control">

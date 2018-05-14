@@ -15,6 +15,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
 import { AddtestComponent } from './components/addtest/addtest.component';
+import { UpdateTestComponent } from './components/update-test/update-test.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'dashboard/create', component: CreateComponent, canActivate:[AuthGuard]},
   {path:'dashboard/update/:id', component: UpdateComponent, canActivate:[AuthGuard]},
+  {path:'dashboard/update/:id/:id', component: UpdateTestComponent, canActivate:[AuthGuard]},
   {path:'dashboard/companies/:id', component: EmployeeComponent, canActivate:[AuthGuard]},
   {path:'dashboard/addtest/:id', component: AddtestComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     EmployeeComponent,
     CreateComponent,
     UpdateComponent,
-    AddtestComponent
+    AddtestComponent,
+    UpdateTestComponent
   ],
   imports: [
     BrowserModule,
