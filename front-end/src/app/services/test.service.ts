@@ -32,7 +32,7 @@ export class TestService {
     removeTest(empId, currTest) {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
-      return this.http.get('http://localhost:3000/tests/dashboard/delete/'+empId, currTest)
+      return this.http.get('http://localhost:3000/tests/dashboard/delete/'+empId+'/'+currTest)
         .map(result => this.result = result.json());
     }
 

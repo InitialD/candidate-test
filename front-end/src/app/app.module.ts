@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'dashboard/create', component: CreateComponent, canActivate:[AuthGuard]},
   {path:'dashboard/update/:id', component: UpdateComponent, canActivate:[AuthGuard]},
-  {path:'dashboard/update/:id/:id', component: UpdateTestComponent, canActivate:[AuthGuard]},
+  {path:'dashboard/update/:id/:tid', component: UpdateTestComponent, canActivate:[AuthGuard]},
   {path:'dashboard/companies/:id', component: EmployeeComponent, canActivate:[AuthGuard]},
   {path:'dashboard/addtest/:id', component: AddtestComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
@@ -58,7 +58,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     FlashMessagesModule.forRoot()
   ],
   exports: [RouterModule],

@@ -22,9 +22,7 @@ module.exports.addNewTest = function(testName, testResult ,empId, callback){
 }
 
 module.exports.removeTest = function(testId,empId, callback){
-    let objEmpId = new mongoose.mongo.ObjectId(empId);
-    //let objTestId = new mongoose.mongo.ObjectId(testId);
-      Test.update({ "_id": objEmpId  },
-        { $pull: { "tests": {"_id":objTestId} }},
+      Test.update({ "_id": empId  },
+        { $pull: { "tests": {"_id":testId} }},
          callback);
 }

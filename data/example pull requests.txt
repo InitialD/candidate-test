@@ -1,0 +1,2 @@
+	Test.update({ "_id":  "5af331ca734d1d64dbec1cdd"  },
+			{ $pull: { "tests": {"_id":ObjectId("5af331ca734d1d64dbec1cde") }}})

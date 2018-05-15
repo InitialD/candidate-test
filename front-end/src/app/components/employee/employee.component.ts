@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
    deleteTest(empId, currTest) {
       this.testService.removeTest(empId, currTest)
         .subscribe(res => {
-          this.router.navigateByUrl('/dashboard/companies/'+empId);
+          this.router.navigateByUrl('/dashboard/companies/'+empId, { skipLocationChange: true });
         })
     }
 
