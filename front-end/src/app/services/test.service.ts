@@ -22,6 +22,13 @@ export class TestService {
         .map(result => this.result = result.json());
     }
 
+    getTest(id,tid) {
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      return this.http.get('http://localhost:3000/tests/dashboard/'+id+'/'+tid)
+        .map(result => this.result = result.json());
+    }
+
     insertTest(test, id) {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
@@ -33,6 +40,13 @@ export class TestService {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
       return this.http.get('http://localhost:3000/tests/dashboard/delete/'+empId+'/'+currTest)
+        .map(result => this.result = result.json());
+    }
+
+    updateTest(test, empId, testId) {
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      return this.http.post('http://localhost:3000/tests/dashboard/update/'+empId+'/'+testId, test, {headers: headers})
         .map(result => this.result = result.json());
     }
 

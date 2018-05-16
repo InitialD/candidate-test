@@ -16,3 +16,9 @@
 		{"_id": ObjectId("5af377b4734d1d64dbec5c25"), "testname":"eyes","result":"Pass"}
 		]
 }]
+
+db.tests.find( {"_id": "5af331ca734d1d64dbec1cdd"},{ "tests" : { $elemMatch : { "_id": ObjectId("5af331ca734d1d64dbec1cde")}}})
+
+(this.currTest[0].tests[0].testname));
+
+db.tests.find( {"_id": "5af331ca734d1d64dbec1cdd"},{ "tests._id": ObjectId("5af331ca734d1d64dbec1cde")})

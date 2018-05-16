@@ -21,20 +21,43 @@ export class UpdateTestComponent implements OnInit {
     private testService:TestService,
     private companyService:CompanyService) { }
 
-    name: String;
-    employee: String;
-    emptest: any;
-    emp: Array<Company>;
+    currTest: Array<Test>;
     currEmp: any;
+    testname: String;
+    result: String;
 
   ngOnInit() {
     this.aR.params.subscribe((params) => {
       let id = params["id"];
-      console.log(id);
+      let tid = params["tid"];
       //get employee info
-      this.companyService.getEmployee(id).subscribe(res => this.emp = res);
+      this.companyService.getEmployee(id).subscribe(res => this.currEmp = res);
       //get test from employee info
-      this.testService.getTests(id).subscribe(res => this.emptest = res);
+      this.testService.getTest(id,tid).subscribe(res => this.currTest = res);
+    });
+  }
+
+  upTest(currEmp, currTest) {
+    const newTest = {
+      testname: this.testname,
+      result: this.result
+    }
+    //Check Fields
+    if(!this.testService.validateTest(newTest)){
+      this.flashMessage.show('Please fill in all fields',
+        {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+    this.testService.updateTest(newTest, currEmp, currTest).subscribe(data => {
+      if(data.success){
+        this.flashMessage.show('Update Successful',
+          {cssClass: 'alert-success', timeout: 3000});
+        this.router.navigateByUrl('/dashboard/companies/' + this.currEmp._id);
+      }else{
+        this.flashMessage.show('Error Updating',
+          {cssClass: 'alert-danger', timeout: 3000});
+        this.router.navigate(['/dashboard/create']);
+      }
     });
   }
 

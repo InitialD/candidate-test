@@ -1,5 +1,6 @@
 <h2 class="page-header">Update Employee</h2>
 <div *ngIf="currEmp">
+  <a routerLink="/dashboard/companies/{{currEmp._id}}" class="btns">Go Back</a>
   <form (submit)="upEmployee(currEmp._id)">
     <div class="form-group">
       <label>Name: {{ currEmp.name}}</label>

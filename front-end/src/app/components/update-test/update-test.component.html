@@ -1,13 +1,13 @@
-<div *ngIf="currEmp">
+<div *ngIf="currEmp && currTest">
   <h2 class="page-header">Update Test</h2>
   <a routerLink="/dashboard/companies/{{currEmp._id}}" class="btns">Go Back</a>
-  <form (submit)="upTest(currEmp._id)"> <!-- add an id to see if it exists-->
+  <form (submit)="upTest(currEmp._id, currTest[0].tests[0]._id)">
     <div class="form-group">
-      <label>Test Name</label>
+      <label>Test Name: {{ currTest[0].tests[0].testname }}</label>
       <input type="text" [(ngModel)]="testname" name="testname" class="form-control">
     </div>
     <div class="form-group">
-      <label>Result (Must be Pass or Fail)</label>
+      <label>Result (Must be Pass or Fail) Current Result: {{currTest[0].tests[0].result}}</label>
       <input type="text" [(ngModel)]="result" name="result" class="form-control">
     </div>
     <input type="submit" class="btn btn-primary" value="Submit">
