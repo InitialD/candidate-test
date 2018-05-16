@@ -28,8 +28,6 @@ module.exports.removeTest = function(testId,empId, callback){
 }
 
 module.exports.updateCurrTest = function(testName, testResult ,empId, testId, callback){
-    // TODO: {"_id": req.params.id},{ "tests" : { $elemMatch : { "_id": req.params.tid}}}
-    //let objId = new mongoose.mongo.ObjectId(empId);
       Test.updateOne({ "_id": empId, "tests._id": testId},
         { $set: {"tests.$.testname":testName,"tests.$.result":testResult} },
         callback);

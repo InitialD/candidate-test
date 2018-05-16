@@ -15,15 +15,9 @@ export class AuthService {
 
   constructor(private http:Http) { }
 
-  // fix observable
-
   registerUser(user){
     let headers = new Headers();
-    //add content type to headers
     headers.append('Content-Type', 'application/json');
-
-    //return by post the request, revert route to http://localhost:8080/
-    //for local use
     return this.http.post('http://localhost:3000/users/register',
       user, {headers: headers}).map(res => res.json());
   }

@@ -19,7 +19,7 @@
     <div class="company-container">
       <div class="row expanded">
         <div >
-          <a routerLink="companies/">{{ test.testname}}</a>
+          <a>{{ test.testname}}</a>
           <a routerLink="/dashboard" (click)="deleteTest(emp._id, test._id)" class="btns">Delete</a>
           <a routerLink="/dashboard/update/{{ emp._id }}/{{ test._id }}" class="btns">Update</a>
           <div>Result: {{ test.result}}</div>

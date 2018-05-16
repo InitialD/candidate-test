@@ -52,12 +52,12 @@ export class UpdateTestComponent implements OnInit {
       if(data.success){
         this.flashMessage.show('Update Successful',
           {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigateByUrl('/dashboard/companies/' + this.currEmp._id);
+
       }else{
         this.flashMessage.show('Error Updating',
           {cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/dashboard/create']);
       }
+      this.router.navigateByUrl('/dashboard/companies/' + this.currEmp._id);
     });
   }
 

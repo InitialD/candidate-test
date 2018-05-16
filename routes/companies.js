@@ -80,13 +80,13 @@ router.post('/dashboard/update/:id', function(req, res) {
 
 //delete a specific one //try /delete/:id
 router.get('/dashboard/delete/:id', (req, res) => {
+    test.findByIdAndRemove(req.params.id).exec();
     company.findByIdAndRemove(req.params.id)
           .exec(function(err, emp) {
               if (err) {
-                  console.log('cannot delete ' + req.params.id);
-                  next(err);
+                  res.json({success: false, msg: "Fail to Delete Employee"});
               } else {
-                  res.json(emp);
+                  res.json({success: true, msg: "Deleted Employee"});
               }
           });
 });
