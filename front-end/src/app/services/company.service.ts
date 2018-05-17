@@ -32,7 +32,7 @@ export class CompanyService {
   findEmployee(name) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/companies/dashboard/find'+name)
+    return this.http.get('http://localhost:3000/companies/dashboard/results/'+name)
       .map(result => this.result = result.json());
   }
 

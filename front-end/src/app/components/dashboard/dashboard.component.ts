@@ -25,18 +25,7 @@ export class DashboardComponent implements OnInit {
   }
 
   searchEmployee(){
-    const emp = {
-      name: this.name,
-      employee: "placeholder"
-    }
-    //search for employee
-    this.companyService.findEmployee(emp).subscribe(data => {
-      if(!data.success){
-        this.flashMessage.show('Search Complete',
-          {cssClass: 'alert-danger', timeout: 3000});
-      }
-        this.router.navigate(['/dashboard/results']);
-    });
+    this.router.navigateByUrl('/dashboard/results/'+this.name);
   }
 
   }

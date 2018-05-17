@@ -16,6 +16,7 @@ import { CreateComponent } from './components/create/create.component';
 import { UpdateComponent } from './components/update/update.component';
 import { AddtestComponent } from './components/addtest/addtest.component';
 import { UpdateTestComponent } from './components/update-test/update-test.component';
+import { FindComponent } from './components/find/find.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -24,6 +25,7 @@ import { map } from 'rxjs/operators';
 import { AuthGuard } from "./guard/auth.guard";
 import { CompanyService } from "./services/company.service";
 import { TestService } from "./services/test.service";
+
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
   {path:'dashboard/update/:id/:tid', component: UpdateTestComponent, canActivate:[AuthGuard]},
   {path:'dashboard/companies/:id', component: EmployeeComponent, canActivate:[AuthGuard]},
   {path:'dashboard/addtest/:id', component: AddtestComponent, canActivate:[AuthGuard]},
+  {path:'dashboard/results/:name', component: FindComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ];
 
@@ -51,7 +54,8 @@ const appRoutes: Routes = [
     CreateComponent,
     UpdateComponent,
     AddtestComponent,
-    UpdateTestComponent
+    UpdateTestComponent,
+    FindComponent
   ],
   imports: [
     BrowserModule,

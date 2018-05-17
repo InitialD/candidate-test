@@ -1,0 +1,19 @@
+<div class="small-12 medium-9 columns">
+  Search Results
+</div>
+<div class="small-12 medium-9 columns">
+  <a [routerLink]="['/dashboard']" class="btns">Go Back</a>
+</div>
+
+<div *ngIf="currEmp">
+  <div class="company-container">
+    <div class="row expanded">
+      <div class="small-12 medium-5 medium-offset-1 columns">
+        <a routerLink="/dashboard/companies/{{currEmp[0]._id}}">{{ currEmp[0].name}}</a>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <p>{{ currEmp[0].employee | slice: 0:50 }}</p>
+      </div>
+    </div>
+  </div>
+</div>

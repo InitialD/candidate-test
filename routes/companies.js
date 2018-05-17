@@ -34,13 +34,15 @@ router.get('/dashboard/:id', (req, res) => {
 });
 
 //get a specific employee by name
-router.get('/dashboard/find/:name', (req, res) => {
-    company.find({"name":req.params.name})
+router.get('/dashboard/results/:name', (req, res) => {
+  console.log(req.params.name);
+    company.find({"name": req.params.name})
           .exec(function(err, emp) {
               if (err) {
                   console.log('cannot find ' + req.params.id);
                   next(err);
               } else {
+                console.log(JSON.stringify(emp));
                   res.json(emp);
               }
           });
