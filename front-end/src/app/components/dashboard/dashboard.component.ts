@@ -32,10 +32,10 @@ export class DashboardComponent implements OnInit {
     //search for employee
     this.companyService.findEmployee(emp).subscribe(data => {
       if(!data.success){
-        this.flashMessage.show('To Implement',
+        this.flashMessage.show('Search Complete',
           {cssClass: 'alert-danger', timeout: 3000});
       }
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/results']);
     });
   }
 

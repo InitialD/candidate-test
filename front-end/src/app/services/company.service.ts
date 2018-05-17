@@ -29,11 +29,10 @@ export class CompanyService {
       .map(result => this.result = result.json());
   }
 
-  //To-Do implement in front end
   findEmployee(name) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/companies/dashboard/')
+    return this.http.get('http://localhost:3000/companies/dashboard/find'+name)
       .map(result => this.result = result.json());
   }
 

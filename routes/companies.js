@@ -33,9 +33,9 @@ router.get('/dashboard/:id', (req, res) => {
           });
 });
 
-/*get a specific employee by name
-router.get('/dashboard/:id', (req, res) => {
-    company.findById(req.params.id)
+//get a specific employee by name
+router.get('/dashboard/find/:name', (req, res) => {
+    company.find({"name":req.params.name})
           .exec(function(err, emp) {
               if (err) {
                   console.log('cannot find ' + req.params.id);
@@ -44,7 +44,7 @@ router.get('/dashboard/:id', (req, res) => {
                   res.json(emp);
               }
           });
-});*/
+});
 
 //add an employee
 router.post('/dashboard/create', function(req, res) {

@@ -30,7 +30,6 @@ export class UpdateComponent implements OnInit {
     this.aR.params.subscribe((params) => {
       let id = params["id"];
       this.companyService.getEmployee(id).subscribe(res => this.currEmp = res);
-
     });
   }
 
